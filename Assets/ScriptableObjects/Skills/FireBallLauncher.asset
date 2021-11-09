@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d68cbf73836c74191a30696da14c92, type: 3}
+  m_Name: FireBallLauncher
+  m_EditorClassIdentifier: 
+  skillPrefeb: {fileID: 5513806227195857693, guid: c090aa7fab3757247b869c701f9e76f6, type: 3}
+  projectileDef: {fileID: 11400000, guid: e033aace17df1e9459fae96a39bc6c16, type: 2}
+  warheadDef: {fileID: 11400000, guid: 8b6a8432008c905449da95ff7ea23b06, type: 2}
+  damage: 30
+  cost: 0
+  cooldown: 5

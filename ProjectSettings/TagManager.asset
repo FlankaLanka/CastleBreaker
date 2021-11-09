@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - AllyProjectile
+  - EnemyTower
+  - Water
+  - Guard_Enemy
+  - HealthPot
+  - Walls
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Enemy
+  - Player
+  - Walls
+  - Hidden
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Underground
+    uniqueID: 2801880413
+    locked: 0
+  - name: Earth
+    uniqueID: 2519274035
+    locked: 0
+  - name: Ground
+    uniqueID: 2661502313
+    locked: 0
+  - name: Top
+    uniqueID: 2540023637
+    locked: 0

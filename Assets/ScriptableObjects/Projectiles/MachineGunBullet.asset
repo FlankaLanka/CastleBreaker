@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4433db974883cae4f9210e69c11205f1, type: 3}
+  m_Name: MachineGunBullet
+  m_EditorClassIdentifier: 
+  projectileName: MachineGunBullet
+  initPoolingAmount: 30
+  projectilePrefeb: {fileID: 4712440843552120483, guid: a8cd3a16ee4cadc4780e683aaaedde17, type: 3}
+  projSpeed: 4
+  lifeTime: 3
+  maxHit: 1

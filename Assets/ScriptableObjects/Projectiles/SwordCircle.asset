@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4433db974883cae4f9210e69c11205f1, type: 3}
+  m_Name: SwordCircle
+  m_EditorClassIdentifier: 
+  projectileName: SwordCircle
+  initPoolingAmount: 5
+  projectilePrefeb: {fileID: 7430461721715611974, guid: c4dbb69a91ec968499730eb3ef05bfe8, type: 3}
+  projSpeed: 20
+  lifeTime: 10
+  maxHit: 5

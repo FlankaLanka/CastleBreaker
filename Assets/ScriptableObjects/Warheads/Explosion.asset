@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8fb9fb27632a9489477d305777ade2, type: 3}
+  m_Name: Explosion
+  m_EditorClassIdentifier: 
+  warheadName: Explosion
+  initPoolingAmount: 2
+  warheadPrefeb: {fileID: 7807556247985780613, guid: 9583686f7c2c42846a23486c24226773, type: 3}
