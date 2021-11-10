@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d68cbf73836c74191a30696da14c92, type: 3}
   m_Name: Jab
   m_EditorClassIdentifier: 
+  skillName: Jab
   skillPrefeb: {fileID: 7624419429694078726, guid: a0cc08c3cbbaf2e4ca98af3fd27be106, type: 3}
   projectileDef: {fileID: 11400000, guid: 96df154a29ccdb940ba2ca636e2dfe81, type: 2}
   warheadDef: {fileID: 11400000, guid: b09408e27e71e9247a34f825acb7e4ba, type: 2}

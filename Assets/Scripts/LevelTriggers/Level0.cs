@@ -16,7 +16,7 @@ public class Level0 : MonoBehaviour
     public GameObject Monsterfactory;
     // Start is called before the first frame update
     public GameObject win;
-    public TMP_Text textBar;
+    //public TMP_Text textBar;
     private WinLevel w;
 
     private Queue<KeyValuePair<string, string>> dialogueLines;
@@ -50,7 +50,7 @@ public class Level0 : MonoBehaviour
                 player_2_HP_bar.SetActive(true);
                 //Monsterfactory.SetActive(true);
                 mf.setSpawn(true);
-                textBar.text = "Mission 3: Destory Tower in the North. Magician's Skills can quickly deal with a lot of enemies. ";
+                //textBar.text = "Mission 3: Destory Tower in the North. Magician's Skills can quickly deal with a lot of enemies. ";
                 Invoke("awakeTeam",5.0f);
                 notHaveP2 = false;
 
@@ -74,16 +74,16 @@ public class Level0 : MonoBehaviour
             switch (currentState)
             {
                 case 1:
-                    textBar.text = "Mission 2: Find Magician Fox";
+                    //textBar.text = "Mission 2: Find Magician Fox";
                     break;
                 case 2:
-                    textBar.text = "Mission 2: Find Magician Fox. 6 ClockMK2 is really hard, find another way. ";
+                    //textBar.text = "Mission 2: Find Magician Fox. 6 ClockMK2 is really hard, find another way. ";
                     break;
                 case 3:
-                    textBar.text = "Mission 2: Find Magician Fox. Pillboxs are dangerous. Try dashing through when they stop fire. ";
+                    //textBar.text = "Mission 2: Find Magician Fox. Pillboxs are dangerous. Try dashing through when they stop fire. ";
                     break;
                 case 4:
-                    textBar.text = "Mission 3: Destory Tower in the North. Magician's Skills can quickly deal with a lot of enemies. ";
+                    //textBar.text = "Mission 3: Destory Tower in the North. Magician's Skills can quickly deal with a lot of enemies. ";
                     break;
                 default:
                     break;

@@ -28,12 +28,12 @@ public class Trap : Projectile
             if(targetLayer == 8){
                 foreach (Collider2D c in collisions){
                     c.gameObject.GetComponent<EnemyHealth>().loseHp(damage);
-                    bm.addBuffTo("Ignite", c.gameObject);
+                    bm.addBuffTo("Poison", c.gameObject);
                 }
             }else if(targetLayer == 9){
                 foreach (Collider2D c in collisions){
                     c.gameObject.GetComponent<PlayerHealth>().loseHp(damage);
-                    bm.addBuffTo("Ignite", c.gameObject);
+                    bm.addBuffTo("Poison", c.gameObject);
                 }
             }
             spawnWarhead();

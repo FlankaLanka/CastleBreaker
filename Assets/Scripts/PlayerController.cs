@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
 
-
 // All player's action should been handled here. 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private ChaAction playerAction;
     private ChaSkillLauncher playerShooter;
+    private ChaState playerState;
 
     public Joystick moveStick;
 
@@ -26,6 +26,9 @@ public class PlayerController : MonoBehaviour
     private GameObject cd1;
     private GameObject cd2;
     private GameObject cd3;
+    private Text buttonText_1;
+    private Text buttonText_2;
+    private Text buttonText_3;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour
             playerCharacter = characters[0];
             playerAction = playerCharacter.GetComponent<ChaAction>();
             playerShooter = playerCharacter.GetComponent<ChaSkillLauncher>();
+            playerState = playerCharacter.GetComponent<ChaState>();
             cameraFollow();
             //changePlayerCharacter(0);
         }
@@ -44,7 +48,13 @@ public class PlayerController : MonoBehaviour
         cd1 = GameObject.Find("CooldownLayer1");
         cd2 = GameObject.Find("CooldownLayer2");
         cd3 = GameObject.Find("CooldownLayer3");
+        buttonText_1 = cd1.transform.parent.Find("Text").GetComponent<Text>();
+        buttonText_2 = cd2.transform.parent.Find("Text").GetComponent<Text>();
+        buttonText_3 = cd3.transform.parent.Find("Text").GetComponent<Text>();
 
+        buttonText_1.text = playerState.skills[0].skillName;
+        buttonText_2.text = playerState.skills[1].skillName;
+        buttonText_3.text = playerState.skills[2].skillName;
     }
 
     // Update is called once per frame
@@ -54,8 +64,10 @@ public class PlayerController : MonoBehaviour
         ShowCooldown(cd2, 1);
         ShowCooldown(cd3, 2);
 
-        playerAction.move(moveStick.Horizontal, moveStick.Vertical);
-
+        if(!playerState.isAIControled){
+            playerAction.move(moveStick.Horizontal, moveStick.Vertical);
+        }
+        
         // Move camera; 
         cameraFollow();
     }
@@ -96,6 +108,12 @@ public class PlayerController : MonoBehaviour
 
             playerAction = playerCharacter.GetComponent<ChaAction>();
             playerShooter = playerCharacter.GetComponent<ChaSkillLauncher>();
+            playerState = playerCharacter.GetComponent<ChaState>();
+
+            buttonText_1.text = playerState.skills[0].skillName;
+            buttonText_2.text = playerState.skills[1].skillName;
+            buttonText_3.text = playerState.skills[2].skillName;
+
         }
     }
 

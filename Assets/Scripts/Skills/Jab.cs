@@ -10,7 +10,7 @@ public class Jab : Skill
 
     private Animator chaAnim;
     private Sneak SneakSkill;
-    private float bounsDamage = 150.0f;
+    private float bounsDamage = 300.0f;
 
     private void Start() {
         cooldown = skillDef.cooldown;

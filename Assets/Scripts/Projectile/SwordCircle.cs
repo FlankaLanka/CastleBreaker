@@ -11,45 +11,34 @@ public class SwordCircle : Projectile
     private float angularVelocity; 
 
 
-    // relative angular between start|end direction and cha's face direction. 
-    private static float relativeAngular = 1.31f;// pi*(5/12)
     private static float radius = 1.25f; 
-    private float startAngular;
-    private float endAngular;
+    private float endAngular = 160f;
     private float angularMovement;
     private TrailRenderer trailRenderer;
 
+    public GameObject trailGen;
     void Start()
     {
         projSpeed = projectileDef.projSpeed;
         remainHit = projectileDef.maxHit;
 
-        angularVelocity = projSpeed/radius;
-        trailRenderer = GetComponent<TrailRenderer>();
+        angularVelocity =  Mathf.Rad2Deg*(projSpeed/radius);
+        trailRenderer = trailGen.GetComponent<TrailRenderer>();
     }
 
     new public void setDirect(Vector2 d){
         direction = new Vector3(d.x,d.y,0);
 
-        float da = Mathf.Atan2(d.y,d.x);
-        if(da >= 0){
-            startAngular = da - relativeAngular;
-            endAngular = da + relativeAngular;
-        }else{
-            da += 2*Mathf.PI;
-            startAngular = da - relativeAngular;
-            endAngular = da + relativeAngular;
-        }
-        angularMovement = startAngular;
-        transform.position = chaTranform.position + 
-        new Vector3(radius*Mathf.Cos(angularMovement), radius*Mathf.Sin(angularMovement), 0);
+        gameObject.transform.eulerAngles = new Vector3 (0,0,0);
+        Vector3 q = Quaternion.FromToRotation(new Vector3(0,1,0), new Vector3(d.x,d.y,0)).eulerAngles;
+        gameObject.transform.Rotate(q);
+        gameObject.transform.position = chaTranform.position;
+
         if(trailRenderer == null){
-            trailRenderer = GetComponent<TrailRenderer>();
+            trailRenderer = trailGen.GetComponent<TrailRenderer>();
         }
         trailRenderer.emitting = true;
     }
-    // Update is called once per frame
-    //void FixedUpdate() {    }
 
     private bool recycling = false;
     void Update()
@@ -60,7 +49,8 @@ public class SwordCircle : Projectile
                 StartCoroutine(waitingRecycle());
             }else{
                 angularMovement += angularVelocity * Time.deltaTime;
-                transform.position = chaTranform.position + new Vector3(radius*Mathf.Cos(angularMovement), radius*Mathf.Sin(angularMovement), 0);
+                transform.eulerAngles += new Vector3(0,0,angularVelocity * Time.deltaTime);
+                transform.position = chaTranform.position;
             }
         }
     }
@@ -69,7 +59,7 @@ public class SwordCircle : Projectile
     IEnumerator waitingRecycle(){
         yield return new WaitForSeconds(0.3f);
         trailRenderer.emitting = false;
-        angularMovement = startAngular;
+        angularMovement = 0f;
         remainHit = projectileDef.maxHit;
         recycling = false;
         recycleProjectile(gameObject);

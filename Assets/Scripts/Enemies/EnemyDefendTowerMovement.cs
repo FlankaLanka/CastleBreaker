@@ -12,12 +12,17 @@ public class EnemyDefendTowerMovement : Enemy
     private bool inGuard = false;
     private float guardRange = 8.0f;
     // Update is called once per frame
+    private SpriteRenderer SignalLight;
+
+
+    private Coroutine twAlert;
     protected override void Start() {
         base.Start();
         if(!inGuard){
-            StartCoroutine(TowerGuard());
+            twAlert = StartCoroutine(TowerGuard());
             inGuard = true;
         }
+        SignalLight = GetComponent<SpriteRenderer>();
     }
 
     IEnumerator TowerGuard(){
@@ -34,7 +39,14 @@ public class EnemyDefendTowerMovement : Enemy
         }
     }
 
-
+    public void PowerOff(){
+        StopCoroutine(twAlert);
+        SignalLight.color = Color.black;
+    }
+    public void PowerOn(){
+        twAlert = StartCoroutine(TowerGuard());
+        SignalLight.color = Color.red;
+    }
 
     // Basic Enemies rifle
     protected override void strike_1(Transform target){

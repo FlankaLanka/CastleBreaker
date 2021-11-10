@@ -11,8 +11,6 @@ public class ChaAction : MonoBehaviour
     private AudioSource runSound;
     private bool audioIsPlaying = false;
 
-    private bool isAIControled = true;
-
     int animSpeedTrigger = 0;
 
     private GameObject moveStick;
@@ -49,6 +47,19 @@ public class ChaAction : MonoBehaviour
                     audioIsPlaying = true;
                     runSound.Play();
                 }
+            }else if(chaState.isAIControled==true){
+                if(animSpeedTrigger!=0){
+                    anim.SetFloat("Look X", rb.velocity.x);
+                    anim.SetFloat("Look Y", rb.velocity.y);
+                    if(!audioIsPlaying)
+                    {
+                        audioIsPlaying = true;
+                        runSound.Play();
+                    }
+                }else{
+                    audioIsPlaying = false;
+                    runSound.Stop();
+                }
             }
             else
             {
@@ -60,12 +71,12 @@ public class ChaAction : MonoBehaviour
 
     public void switchControlToPlayer()
     {
-        isAIControled = false;
+        chaState.isAIControled = false;
     }
 
     public void switchControlToAI()
     {
-        isAIControled = true;
+        chaState.isAIControled = true;
     }
 
     public void move(float movementX, float movementY){
@@ -80,10 +91,5 @@ public class ChaAction : MonoBehaviour
             rb.velocity = new Vector2(0, 0);
         }
     }
-
-    public void changeAIState(){
-
-    }
-
 
 }

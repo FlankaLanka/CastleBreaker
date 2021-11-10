@@ -56,22 +56,42 @@ public class EnemyClockMovement : MonoBehaviour
 
     private Transform FindClosestPlayer()
     {
-        GameObject closest = playersList[0];
+        Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, 6.0f, Usefuls.UsefulConstant.PlayerLayerMask);
+
+
         Vector2 currentPosition = gameObject.transform.position;
         float minDistance = 9999999f;
-        foreach(GameObject player in playersList)
-        {
-            Vector2 playerDist = player.transform.position;
-            float distance = (playerDist - currentPosition).sqrMagnitude;
 
-            if(distance < minDistance && player.layer == Usefuls.UsefulConstant.PlayerLayer)
+
+        if (collisions.Length != 0){
+            GameObject closest = collisions[0].gameObject;
+            foreach(Collider2D c in collisions)
             {
-                minDistance = distance;
-                closest = player;
-            }
-        }
+                Vector2 playerDist = c.gameObject.transform.position;
+                float distance = (playerDist - currentPosition).sqrMagnitude;
 
-        return closest.transform;
+                if(distance < minDistance && c.gameObject.layer == Usefuls.UsefulConstant.PlayerLayer)
+                {
+                    minDistance = distance;
+                    closest = c.gameObject;
+                }
+            }
+            return closest.transform;
+        }else{
+            GameObject closest = playersList[0];
+            foreach(GameObject player in playersList)
+            {
+                Vector2 playerDist = player.transform.position;
+                float distance = (playerDist - currentPosition).sqrMagnitude;
+
+                if(distance < minDistance && player.layer == Usefuls.UsefulConstant.PlayerLayer)
+                {
+                    minDistance = distance;
+                    closest = player;
+                }
+            }
+            return closest.transform;
+        }
     }
 
 

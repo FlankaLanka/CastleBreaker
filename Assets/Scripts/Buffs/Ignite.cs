@@ -27,7 +27,7 @@ public class Ignite : Buff
     IEnumerator Burning()
     {
         float damageDuration = 0.25f; // hard code here. 
-        float damage = 10;
+        float damage = 5f;
         float remainTime = duration;
         while(remainTime > 0){
             if(victim && victim.activeInHierarchy){

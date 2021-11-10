@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d68cbf73836c74191a30696da14c92, type: 3}
   m_Name: TrapLauncher
   m_EditorClassIdentifier: 
+  skillName: Trap
   skillPrefeb: {fileID: 6515111151508564269, guid: 23d91c241b05c1446a519f721e6eadb8, type: 3}
   projectileDef: {fileID: 11400000, guid: 3130b068eba6ead4081c5e1093932859, type: 2}
   warheadDef: {fileID: 11400000, guid: a5c98c56d14001e4380d46ddaa8f7b10, type: 2}

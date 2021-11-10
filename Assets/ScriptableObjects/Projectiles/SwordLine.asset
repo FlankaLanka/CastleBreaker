@@ -17,4 +17,4 @@ MonoBehaviour:
   projectilePrefeb: {fileID: 2061220651808768257, guid: 853290bce9aa4554eb29f8becfe78bea, type: 3}
   projSpeed: 2
   lifeTime: 0.25
-  maxHit: 2
+  maxHit: 1

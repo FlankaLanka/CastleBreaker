@@ -6,7 +6,7 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/Skills")]
 public class SkillSO: ScriptableObject {
-
+    public string skillName;
     public GameObject skillPrefeb;
     public ProjectileSO projectileDef;
     public WarheadSO warheadDef;

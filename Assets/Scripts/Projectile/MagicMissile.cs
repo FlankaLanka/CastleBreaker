@@ -51,7 +51,7 @@ public class MagicMissile : Projectile
             Vector2 pos = new Vector2(transform.position.x,transform.position.y);
             //Collider2D collision = Physics2D.OverlapCircle(pos, 6.0f);
             Collider2D collision = Physics2D.OverlapCircle(pos, 6.0f, 1<<targetLayer);
-            Assert.IsNotNull(collision);
+            //Assert.IsNotNull(collision);
             if(collision != null){
                 //if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyTower" || collision.gameObject.tag == "Guard_Enemy"){
                 hasTarget = true;

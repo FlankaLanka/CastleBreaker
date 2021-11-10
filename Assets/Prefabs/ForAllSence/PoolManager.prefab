@@ -59,3 +59,4 @@ MonoBehaviour:
   buffRegList:
   - {fileID: 11400000, guid: d44764d9bf71caf43aa391fb2c6056c2, type: 2}
   - {fileID: 11400000, guid: 233f5a9f2f8fc07499148e9eb613d526, type: 2}
+  - {fileID: 11400000, guid: 7127eff608ea21c42acc99834097d50e, type: 2}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f3042b86b4c88479024f3f19b0e888, type: 3}
   m_Name: Poison
   m_EditorClassIdentifier: 
-  buffName: 
-  buffPrefeb: {fileID: 0}
-  poolingAmount: 0
-  duration: 0
+  buffName: Poison
+  buffPrefeb: {fileID: 2747133427969552997, guid: 19f8c366c6f16b1449c7197513f9e5b9, type: 3}
+  poolingAmount: 1
+  duration: 10

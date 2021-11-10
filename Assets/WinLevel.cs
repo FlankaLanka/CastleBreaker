@@ -7,18 +7,22 @@ public class WinLevel : MonoBehaviour
     public GameObject EndPanel;
 
     private bool hasWon;
+    public bool winSignal;
 
     private void Start()
     {
         hasWon = false;
+        winSignal = false;
         StartCoroutine(db());
     }
 
     IEnumerator db(){
         while (!hasWon)
         {
-            if(GameObject.FindGameObjectsWithTag("EnemyTower").Length <= 0)
+            //if(GameObject.FindGameObjectsWithTag("EnemyTower").Length <= 0)
+            if(winSignal)
             {
+                winSignal = false;
                 hasWon = true;
                 Time.timeScale = 0f;
                 EndPanel.SetActive(true);
@@ -36,10 +40,5 @@ public class WinLevel : MonoBehaviour
         //    Time.timeScale = 0f;
         //    EndPanel.SetActive(true);
         //}
-    }
-    public void setWin(){
-        hasWon = true;
-        Time.timeScale = 0f;
-        EndPanel.SetActive(true);
     }
 }
