@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Camera playerCamera;
 
+    private int currentPlayer;
     public GameObject playerCharacter;
     private int aiPlayer = 1;
 
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     public Joystick moveStick;
 
-
+    public bool CGMovingCamera {get; private set;}
     private GameObject cd1;
     private GameObject cd2;
     private GameObject cd3;
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         if (characters.Count > 0){
+            currentPlayer = 0;
             playerCharacter = characters[0];
             playerAction = playerCharacter.GetComponent<ChaAction>();
             playerShooter = playerCharacter.GetComponent<ChaSkillLauncher>();
@@ -44,6 +46,7 @@ public class PlayerController : MonoBehaviour
         else{
             Debug.Log("Cannot get valided character, editor may not set players. ");
         }
+        CGMovingCamera = false;
 
         cd1 = GameObject.Find("CooldownLayer1");
         cd2 = GameObject.Find("CooldownLayer2");
@@ -67,9 +70,10 @@ public class PlayerController : MonoBehaviour
         if(!playerState.isAIControled){
             playerAction.move(moveStick.Horizontal, moveStick.Vertical);
         }
-        
-        // Move camera; 
-        cameraFollow();
+        if(!CGMovingCamera){
+            // Move camera; 
+            cameraFollow();
+        }
     }
 
     private void ShowCooldown(GameObject cdLayer, int skillNum)
@@ -87,8 +91,44 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.position = playPosition;
     }
 
-    public GameObject getAICha(){
-        return characters[aiPlayer];
+    public void setCharacter(GameObject newPlayer, int i){
+        if(i < 0){
+            Debug.Log("Invalid index!!");
+            return;
+        }
+
+        if(i == currentPlayer){
+            characters[i] = newPlayer;
+            playerCharacter = characters[i];
+
+            playerAction = playerCharacter.GetComponent<ChaAction>();
+            playerShooter = playerCharacter.GetComponent<ChaSkillLauncher>();
+            playerState = playerCharacter.GetComponent<ChaState>();
+
+            buttonText_1.text = playerState.skills[0].skillName;
+            buttonText_2.text = playerState.skills[1].skillName;
+            buttonText_3.text = playerState.skills[2].skillName;
+
+
+        }else{
+            if(i < characters.Count){
+                characters[i] = newPlayer;
+            }else{
+                Debug.Log("Invalid index!!");
+                return;
+            }
+        }
+    }
+
+    public void LockCameraToPlayer(bool toLock){
+        CGMovingCamera = !toLock;
+    }
+
+    public void MoveCameraTo(Vector3 targetPosition) {
+        if(CGMovingCamera){
+            Vector3 playPosition = new Vector3(targetPosition.x, targetPosition.y, -10);
+            playerCamera.transform.position = playPosition;
+        }
     }
 
 
@@ -99,10 +139,12 @@ public class PlayerController : MonoBehaviour
         {
             int characterID = aiPlayer;
             aiPlayer++;
-            if (aiPlayer == 2)
+            //if (aiPlayer == 2)
+            if(aiPlayer == characters.Count)
                 aiPlayer = 0;
 
             playerAction.stop();
+            currentPlayer = characterID;
             playerCharacter = characters[characterID];
 
 

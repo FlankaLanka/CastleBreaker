@@ -14,6 +14,7 @@ public class ChaAction : MonoBehaviour
     int animSpeedTrigger = 0;
 
     private GameObject moveStick;
+    private Joystick moveStickJoy;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class ChaAction : MonoBehaviour
         anim = GetComponent<Animator>();
         chaState = GetComponent<ChaState>();
         moveStick = GameObject.Find("Fixed Joystick");
+        moveStickJoy = moveStick.GetComponent<Joystick>();
         runSound = GetComponent<AudioSource>();
     }
 
@@ -31,24 +33,19 @@ public class ChaAction : MonoBehaviour
         
         // Do Somethings for anim
         if(!chaState.blockMoving && !chaState.blockAnim){
+
             animSpeedTrigger = 0;
             if (rb.velocity.x != 0 || rb.velocity.y != 0) {
                 animSpeedTrigger = 1;
             }
             anim.SetFloat("Speed", animSpeedTrigger);
 
-            if(moveStick.GetComponent<Joystick>().Horizontal == 1 || moveStick.GetComponent<Joystick>().Horizontal == -1
-                || moveStick.GetComponent<Joystick>().Vertical == 1 || moveStick.GetComponent<Joystick>().Vertical == -1)
-            {
-                anim.SetFloat("Look X", rb.velocity.x);
-                anim.SetFloat("Look Y", rb.velocity.y);
-                if(!audioIsPlaying)
-                {
-                    audioIsPlaying = true;
-                    runSound.Play();
-                }
-            }else if(chaState.isAIControled==true){
-                if(animSpeedTrigger!=0){
+
+            if(chaState.isAIControled==true){
+                if(rb.velocity.x == 0 && rb.velocity.y == 0){
+                    audioIsPlaying = false;
+                    runSound.Stop();
+                }else{
                     anim.SetFloat("Look X", rb.velocity.x);
                     anim.SetFloat("Look Y", rb.velocity.y);
                     if(!audioIsPlaying)
@@ -56,16 +53,26 @@ public class ChaAction : MonoBehaviour
                         audioIsPlaying = true;
                         runSound.Play();
                     }
-                }else{
+                }
+            }else {
+                if(moveStickJoy.Horizontal == 1 || moveStickJoy.Horizontal == -1
+                    || moveStickJoy.Vertical == 1 || moveStickJoy.Vertical == -1)
+                {
+                    anim.SetFloat("Look X", moveStickJoy.Horizontal);//rb.velocity.x);
+                    anim.SetFloat("Look Y", moveStickJoy.Vertical);//rb.velocity.y);
+                    if(!audioIsPlaying)
+                    {
+                        audioIsPlaying = true;
+                        runSound.Play();
+                    }
+                }
+                else
+                {
                     audioIsPlaying = false;
                     runSound.Stop();
                 }
             }
-            else
-            {
-                audioIsPlaying = false;
-                runSound.Stop();
-            }
+            
         }
     }
 

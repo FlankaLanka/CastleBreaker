@@ -22,7 +22,16 @@ public class EnemyHealth : MonoBehaviour
     {
         if(amt >= currentHealth)
         {
-            Destroy(gameObject);
+            currentHealth -= amt;
+            if(name == "Boss")
+            {
+                //play death animation then destroy
+                //this is done in BossAI script
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
         else
         {

@@ -9,6 +9,10 @@ using LevelEvents;
 public abstract class LevelEventManager : MonoBehaviour {
         public static LevelEventManager Instance { get; private set; }
 
+        public GameObject playerManager;
+        public GameObject WinManager;
+
+
         // Useful public settings. Should be set well. 
         // WayPoints, should be add all. 
         public List<GameObject> WayPointObjs;
@@ -17,6 +21,7 @@ public abstract class LevelEventManager : MonoBehaviour {
         public GameObject PlayerInputCanvans;
         public GameObject SwitchButton;
         public List<GameObject> PlayerHPBars;
+
 
         // Enemies teams can also as triggeer. 
         public List<GameObject> EnemiesTeams;
@@ -130,6 +135,16 @@ public abstract class LevelEventManager : MonoBehaviour {
         protected void UnblockPlayerBar(int index){
             PlayerHPBars[index].SetActive(true);
         }
+        protected IEnumerator BlockPlayerBarAfter(int index, float waitSeconds){
+            yield return new WaitForSeconds(waitSeconds);
+            PlayerHPBars[index].SetActive(false);
+        }
+        protected IEnumerator UnblockPlayerBarAfter(int index, float waitSeconds){
+            yield return new WaitForSeconds(waitSeconds);
+            PlayerHPBars[index].SetActive(true);
+        }
+
+
 
         // check If any player reached WayPoint
         protected bool playerEnteredWayPoint(WayPoint wp){
@@ -152,23 +167,20 @@ public abstract class LevelEventManager : MonoBehaviour {
             Vector3 path = wp.transform.position - player.transform.position;
             Vector2 d = path.normalized;
             playerAction.move(d.x,d.y);
-            //Debug.Log("Start Moving");
+            //Debug.Log(playerState.skills[0].skillName + " Start Moving to " + wp.id);
             while (playerState.isAIControled && path.sqrMagnitude > 0.1f)
             {
                 yield return new WaitForSeconds(0.125f);
                 path = wp.transform.position - player.transform.position;
+                d = path.normalized;
                 playerAction.move(d.x,d.y);
+                //Debug.Log(playerState.skills[0].skillName + " On Moving to " + wp.id);
             }
             playerAction.stop();
         }
 
-        protected IEnumerator StartAfterSeconds(IEnumerator routine, float waitTime){
-            yield return new WaitForSeconds(waitTime);
-            StartCoroutine(routine);
-        }
-
         private bool fading = false;
-        protected IEnumerator SlowlyFadingScreen(bool toBlack, float waitUntilSecond=0.0f){
+        protected IEnumerator SlowlyFadingScreen(bool toBlack, float waitUntilSecond=0.0f, float fadeSpeed=2.0f){
             if (cameraMask == null){
                 cameraMask = playerCamera.GetComponentInChildren<SpriteRenderer>();
             }
@@ -178,7 +190,6 @@ public abstract class LevelEventManager : MonoBehaviour {
             while (fading) {
                  yield return new WaitForSeconds(0.125f);
             }
-            float fadeSpeed = 2f;
             float fadeDuration = 0.0625f;
             fading = true;
             if(toBlack){
@@ -207,6 +218,7 @@ public abstract class LevelEventManager : MonoBehaviour {
             dialogueLines.Enqueue(new KeyValuePair<string,string>(chaName,chaWords));
         }
         // start dialogue
+        // Seems No use.....
         protected void RaiseDialogue(){
             dialogueManager.dialogueLines = dialogueLines;
         }
