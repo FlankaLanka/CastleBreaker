@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   skillName: Shotgun
+  skillImage: {fileID: 21300000, guid: c3bae526786f11046bdd2a781392a458, type: 3}
   skillPrefeb: {fileID: 4959097006012226150, guid: f27be2a17a3c9c24ca68868e0575cd95, type: 3}
   projectileDef: {fileID: 11400000, guid: 3cdad3b312156084686c7040c35b476e, type: 2}
   warheadDef: {fileID: 11400000, guid: b09408e27e71e9247a34f825acb7e4ba, type: 2}

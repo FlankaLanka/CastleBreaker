@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Provoke
   m_EditorClassIdentifier: 
   skillName: Provoke
+  skillImage: {fileID: 21300000, guid: e15de6f8d935253448ee4e7709bd216c, type: 3}
   skillPrefeb: {fileID: 4538781645905571777, guid: 9c11043fedc9cf94f950fea797baebcc, type: 3}
   projectileDef: {fileID: 11400000, guid: 07f0abea469665c43ab15c40f1e40f5f, type: 2}
   warheadDef: {fileID: 11400000, guid: b09408e27e71e9247a34f825acb7e4ba, type: 2}

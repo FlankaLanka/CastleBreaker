@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: APGun
   m_EditorClassIdentifier: 
   skillName: APGun
+  skillImage: {fileID: 21300000, guid: 69a0c8d0025693745a5a2dc18dbe98ed, type: 3}
   skillPrefeb: {fileID: 7594808400756766918, guid: fcf7aa0f1c2088d4a91fcabed1637d90, type: 3}
   projectileDef: {fileID: 11400000, guid: 5e4cb4199b239e94f967f1fa20b1e6f8, type: 2}
   warheadDef: {fileID: 11400000, guid: b09408e27e71e9247a34f825acb7e4ba, type: 2}

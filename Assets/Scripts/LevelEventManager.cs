@@ -11,6 +11,7 @@ public abstract class LevelEventManager : MonoBehaviour {
 
         public GameObject playerManager;
         public GameObject WinManager;
+        public Joystick moveStick;
 
 
         // Useful public settings. Should be set well. 
@@ -39,7 +40,6 @@ public abstract class LevelEventManager : MonoBehaviour {
         protected Queue<KeyValuePair<string, string>> dialogueLines;
         protected DialogueSystem dialogueManager;
 
-        
 
         private void Awake() {
             wayPoints = new Dictionary<int, WayPoint>();
@@ -51,6 +51,7 @@ public abstract class LevelEventManager : MonoBehaviour {
         void Start()
         {
             dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueSystem>();
+
             
             foreach(GameObject g_obj in WayPointObjs){
                 WayPoint wp = g_obj.GetComponent<WayPoint>();
@@ -116,6 +117,7 @@ public abstract class LevelEventManager : MonoBehaviour {
         // Open/Close
         protected void BlockPlayerInput(){
             SwitchAllCharacterToAI();
+            moveStick.resetMoveStick();
             PlayerInputCanvans.SetActive(false);
         }
         protected void UnblockPlayerInput(){

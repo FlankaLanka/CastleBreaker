@@ -27,9 +27,9 @@ public class PlayerController : MonoBehaviour
     private GameObject cd1;
     private GameObject cd2;
     private GameObject cd3;
-    private Text buttonText_1;
-    private Text buttonText_2;
-    private Text buttonText_3;
+    private Image buttonText_1;
+    private Image buttonText_2;
+    private Image buttonText_3;
 
     // Start is called before the first frame update
     void Start()
@@ -51,13 +51,17 @@ public class PlayerController : MonoBehaviour
         cd1 = GameObject.Find("CooldownLayer1");
         cd2 = GameObject.Find("CooldownLayer2");
         cd3 = GameObject.Find("CooldownLayer3");
-        buttonText_1 = cd1.transform.parent.Find("Text").GetComponent<Text>();
-        buttonText_2 = cd2.transform.parent.Find("Text").GetComponent<Text>();
-        buttonText_3 = cd3.transform.parent.Find("Text").GetComponent<Text>();
+        buttonText_1 = cd1.transform.parent.Find("AbilityImage").GetComponent<Image>();
+        buttonText_2 = cd2.transform.parent.Find("AbilityImage").GetComponent<Image>();
+        buttonText_3 = cd3.transform.parent.Find("AbilityImage").GetComponent<Image>();
 
-        buttonText_1.text = playerState.skills[0].skillName;
-        buttonText_2.text = playerState.skills[1].skillName;
-        buttonText_3.text = playerState.skills[2].skillName;
+        //buttonText_1.text = playerState.skills[0].skillName;
+        //buttonText_2.text = playerState.skills[1].skillName;
+        //buttonText_3.text = playerState.skills[2].skillName;
+
+        buttonText_1.sprite = playerState.skills[0].skillImage;
+        buttonText_2.sprite = playerState.skills[1].skillImage;
+        buttonText_3.sprite = playerState.skills[2].skillImage;
     }
 
     // Update is called once per frame
@@ -105,12 +109,17 @@ public class PlayerController : MonoBehaviour
             playerShooter = playerCharacter.GetComponent<ChaSkillLauncher>();
             playerState = playerCharacter.GetComponent<ChaState>();
 
-            buttonText_1.text = playerState.skills[0].skillName;
-            buttonText_2.text = playerState.skills[1].skillName;
-            buttonText_3.text = playerState.skills[2].skillName;
+            //buttonText_1.text = playerState.skills[0].skillName;
+            //buttonText_2.text = playerState.skills[1].skillName;
+            //buttonText_3.text = playerState.skills[2].skillName;
+
+            buttonText_1.sprite = playerState.skills[0].skillImage;
+            buttonText_2.sprite = playerState.skills[1].skillImage;
+            buttonText_3.sprite = playerState.skills[2].skillImage;
 
 
-        }else{
+        }
+        else{
             if(i < characters.Count){
                 characters[i] = newPlayer;
             }else{
@@ -152,9 +161,13 @@ public class PlayerController : MonoBehaviour
             playerShooter = playerCharacter.GetComponent<ChaSkillLauncher>();
             playerState = playerCharacter.GetComponent<ChaState>();
 
-            buttonText_1.text = playerState.skills[0].skillName;
-            buttonText_2.text = playerState.skills[1].skillName;
-            buttonText_3.text = playerState.skills[2].skillName;
+            //buttonText_1.text = playerState.skills[0].skillName;
+            //buttonText_2.text = playerState.skills[1].skillName;
+            //buttonText_3.text = playerState.skills[2].skillName;
+
+            buttonText_1.sprite = playerState.skills[0].skillImage;
+            buttonText_2.sprite = playerState.skills[1].skillImage;
+            buttonText_3.sprite = playerState.skills[2].skillImage;
 
         }
     }

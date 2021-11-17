@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Dash
   m_EditorClassIdentifier: 
   skillName: Dash
+  skillImage: {fileID: 21300064, guid: c1dbff5bcb29cdd4bbb8de3a29f2328c, type: 3}
   skillPrefeb: {fileID: 6199852518712677925, guid: 770fafab7308ebc479b7af595fef247a, type: 3}
   projectileDef: {fileID: 11400000, guid: 3cdad3b312156084686c7040c35b476e, type: 2}
   warheadDef: {fileID: 11400000, guid: b09408e27e71e9247a34f825acb7e4ba, type: 2}

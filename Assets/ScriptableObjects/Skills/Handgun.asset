@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Handgun
   m_EditorClassIdentifier: 
   skillName: HandGun
+  skillImage: {fileID: 21300000, guid: c3bae526786f11046bdd2a781392a458, type: 3}
   skillPrefeb: {fileID: 2701675879152872915, guid: f5f025e16f3ac5247a8c8f3d87ca634c, type: 3}
   projectileDef: {fileID: 11400000, guid: 3cdad3b312156084686c7040c35b476e, type: 2}
   warheadDef: {fileID: 11400000, guid: b09408e27e71e9247a34f825acb7e4ba, type: 2}

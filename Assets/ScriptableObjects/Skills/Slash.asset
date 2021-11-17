@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Slash
   m_EditorClassIdentifier: 
   skillName: Slash
+  skillImage: {fileID: 21300000, guid: ba025bd397a5bab469ef724220a7ae19, type: 3}
   skillPrefeb: {fileID: 5389041268005728696, guid: 84ce704ec4d9fea4da367f67e2cba5ed, type: 3}
   projectileDef: {fileID: 11400000, guid: 108c9d280f1235547b3bdc0b6d554b8e, type: 2}
   warheadDef: {fileID: 11400000, guid: b09408e27e71e9247a34f825acb7e4ba, type: 2}

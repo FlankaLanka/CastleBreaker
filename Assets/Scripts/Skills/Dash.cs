@@ -57,6 +57,7 @@ public class Dash : Skill
     {
         chaState.blockMoving = true;
         chaState.blockDamage = true;
+        chaTranform.gameObject.layer = Usefuls.UsefulConstant.Dashing;
 
         if (rb.velocity.x == 0 && rb.velocity.y == 0) {
             float x = chaTranform.GetComponent<ChaAction>().anim.GetFloat("Look X");
@@ -84,6 +85,8 @@ public class Dash : Skill
         }
         dashFromIdle = false;
         isDashing = false;
+
+        chaTranform.gameObject.layer = Usefuls.UsefulConstant.PlayerLayer;
 
         chaState.blockMoving = false;
         chaState.blockDamage = false;

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MasterFoxSpark
   m_EditorClassIdentifier: 
   skillName: FoxSpark
+  skillImage: {fileID: 21300000, guid: 49d5f31a565073440baba2eab300a81f, type: 3}
   skillPrefeb: {fileID: 4784122999005149070, guid: a93c96f2ff9443b4cb1de55f8cb961d4, type: 3}
   projectileDef: {fileID: 11400000, guid: 273e752447dddbc4783c01a9ddeacd43, type: 2}
   warheadDef: {fileID: 11400000, guid: b09408e27e71e9247a34f825acb7e4ba, type: 2}

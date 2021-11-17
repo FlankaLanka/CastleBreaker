@@ -27,8 +27,10 @@ public class Trap : Projectile
 
             if(targetLayer == 8){
                 foreach (Collider2D c in collisions){
-                    c.gameObject.GetComponent<EnemyHealth>().loseHp(damage);
-                    bm.addBuffTo("Poison", c.gameObject);
+                    if(c.gameObject!=null){
+                        c.gameObject.GetComponent<EnemyHealth>().loseHp(damage);
+                        bm.addBuffTo("Poison", c.gameObject);
+                    }
                 }
             }else if(targetLayer == 9){
                 foreach (Collider2D c in collisions){

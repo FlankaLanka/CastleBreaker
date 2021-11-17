@@ -40,6 +40,12 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     private Vector2 input = Vector2.zero;
 
+    // Add at 11.12.2021, to reset joystick before block it.
+    public void resetMoveStick(){
+        input = Vector2.zero;
+    } 
+
+
     protected virtual void Start()
     {
         HandleRange = handleRange;

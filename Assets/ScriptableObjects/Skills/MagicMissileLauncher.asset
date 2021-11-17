@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MagicMissileLauncher
   m_EditorClassIdentifier: 
   skillName: MagicMissile
+  skillImage: {fileID: 21300026, guid: 8aeb9e233fbb8f14db39770841b78b94, type: 3}
   skillPrefeb: {fileID: 5102528549606374491, guid: a910c4acfcfa4364d989794b50c86c95, type: 3}
   projectileDef: {fileID: 11400000, guid: 7e52b653c8351414da6f44352e28a953, type: 2}
   warheadDef: {fileID: 11400000, guid: b09408e27e71e9247a34f825acb7e4ba, type: 2}

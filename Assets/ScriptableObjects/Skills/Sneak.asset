@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Sneak
   m_EditorClassIdentifier: 
   skillName: Sneak
+  skillImage: {fileID: 21300000, guid: 229bcf9de2e3898468d09766efeb84a8, type: 3}
   skillPrefeb: {fileID: 8998184465844720705, guid: 3f9173b3e197e9245835cdfa49bca9fe, type: 3}
   projectileDef: {fileID: 11400000, guid: 273e752447dddbc4783c01a9ddeacd43, type: 2}
   warheadDef: {fileID: 11400000, guid: b09408e27e71e9247a34f825acb7e4ba, type: 2}
