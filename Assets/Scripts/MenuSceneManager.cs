@@ -39,6 +39,11 @@ public class MenuSceneManager : MonoBehaviour
 
     public void NextLevel()
     {
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        if(currentLevel == 7){
+            MainMenu();
+            return;
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1f;
     }

@@ -17,6 +17,6 @@ MonoBehaviour:
   skillPrefeb: {fileID: 6725593550686184790, guid: 0ecdf63a179dccc4c864f6e56bf35382, type: 3}
   projectileDef: {fileID: 11400000, guid: b6197acb5134448448fcf02144579c45, type: 2}
   warheadDef: {fileID: 11400000, guid: b09408e27e71e9247a34f825acb7e4ba, type: 2}
-  damage: 15
+  damage: 25
   cost: 0
   cooldown: 20

@@ -19,4 +19,4 @@ MonoBehaviour:
   warheadDef: {fileID: 11400000, guid: b09408e27e71e9247a34f825acb7e4ba, type: 2}
   damage: 20
   cost: 0
-  cooldown: 3
+  cooldown: 1

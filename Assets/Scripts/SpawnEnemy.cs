@@ -14,14 +14,18 @@ enum General_Enemy_States {
 public class SpawnEnemy : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    private int maxEnemies = 20;
-    private float spawnTimer;
-    public float alarmTimer;
-    public float attackTimer; //set spawn speed based on different states
-    public int guardEnemyMin;
-    public int enemyTowerMin; //if towers or guard less than certain number then switch to more aggro state
-    [SerializeField] private bool timerCanSpawn = true;
-    private int canCheckCount = 100;
+    public int maxEnemies{private get;set;}
+    public float spawnTimer{private get;set;}
+    public bool isAwake{private get;set;}
+
+
+    private Queue<GameObject> myChilds;
+    // public float alarmTimer;
+    // public float attackTimer; //set spawn speed based on different states
+    // public int guardEnemyMin;
+    // public int enemyTowerMin; //if towers or guard less than certain number then switch to more aggro state
+    // [SerializeField] private bool timerCanSpawn = true;
+    // private int canCheckCount = 100;
 
 
     private General_Enemy_States state = General_Enemy_States.SLEEP;
@@ -29,32 +33,29 @@ public class SpawnEnemy : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        timerCanSpawn = true;
+        isAwake = false;
+        maxEnemies = 5;
+        spawnTimer = 2.5f;
+        myChilds = new Queue<GameObject>();
+        StartCoroutine(SpawnEnem());
+        // timerCanSpawn = true;
     }
 
-
-
-
-    private bool isAwake = true;
-    public void setSpawn(bool b) {
-        isAwake = b;
-    }
     // Update is called once per frame
     void Update()
     {
-        if (canCheckCount == 0){
-            canCheckCount = 100;
-        }else{
-            canCheckCount--;
-        }
-
-        if(isAwake){
-            updateStates();
+        if(isAwake && myChilds.Count > 0){
+            if(myChilds.Peek()!=null){
+                myChilds.Enqueue(myChilds.Dequeue());
+            }else{
+                myChilds.Dequeue();
+            }
         }
     }
 
 
 
+/*
     private void updateStates(){
         switch (state)
         {
@@ -103,13 +104,25 @@ public class SpawnEnemy : MonoBehaviour
         }
     }
 
+*/
+
+
+    public void setSpawn(bool b) {
+        isAwake = b;
+    }
+
+    public void setSpawnTimer(float t) {
+        spawnTimer = t;
+    }
 
     IEnumerator SpawnEnem()
     {
-        yield return new WaitForSeconds(spawnTimer);
-        if ((GameObject.FindGameObjectsWithTag("Enemy").Length < maxEnemies)){
-            Instantiate(enemyPrefab, transform.position - new Vector3(2f, 3.5f, 0f), Quaternion.identity);
+        while (true)
+        {
+            yield return new WaitForSeconds(spawnTimer);
+            if (isAwake && (myChilds.Count < maxEnemies)){
+                myChilds.Enqueue(Instantiate(enemyPrefab, transform.position - new Vector3(2f, 3.5f, 0f), Quaternion.identity));
+            }
         }
-        timerCanSpawn = true;
     }
 }

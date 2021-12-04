@@ -30,14 +30,19 @@ public class APGun : Skill
         // I am really dislike this part of code, But I do not have better idea....maybe we chould find other design for APGun. 
         chaState = chaTranform.GetComponentInParent<ChaState>();
         chaAction = chaTranform.GetComponentInParent<ChaAction>();
-        moveStick = GameObject.Find("Fixed Joystick").GetComponent<Joystick>();
+        scopeSprite = Instantiate(scopePrefeb);
+        scopeSprite.SetActive(false);
+    }
+
+    private bool hasSetObjs = false;
+    private void SetGameObjects(){
         switchButton = GameObject.Find("SwitchCharacter");
         ab1 = GameObject.Find("Ability1");
         ab2 = GameObject.Find("Ability3");
         playerCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        scopeSprite = Instantiate(scopePrefeb);
-        scopeSprite.SetActive(false);
         cameraOrthoSize = playerCamera.orthographicSize;
+        moveStick = GameObject.Find("Fixed Joystick").GetComponent<Joystick>();
+        hasSetObjs = true;
     }
 
     private void Update() {
@@ -50,6 +55,9 @@ public class APGun : Skill
     }
 
     protected override bool checkCondition(){
+        if(!hasSetObjs){
+            SetGameObjects();
+        }
         if(isScoping){
             return true;
         }else{

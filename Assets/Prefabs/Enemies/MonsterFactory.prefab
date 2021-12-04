@@ -265,7 +265,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -1.6462257, y: -1.7143735}
@@ -362,11 +362,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3622078528960303791, guid: f57ab89c58c300045bffc8a6f2129aac, type: 3}
-  alarmTimer: 5
-  attackTimer: 2
-  guardEnemyMin: 0
-  enemyTowerMin: 0
-  timerCanSpawn: 0
 --- !u!114 &5089530431166939016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,8 +413,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.14, y: 1.35}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0.05, y: 1.5}
+  m_SizeDelta: {x: 2.5602, y: 5.2826}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5089530431208332770
 Canvas:

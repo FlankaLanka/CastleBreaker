@@ -22,15 +22,23 @@ public class ChaAction : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         chaState = GetComponent<ChaState>();
-        moveStick = GameObject.Find("Fixed Joystick");
-        moveStickJoy = moveStick.GetComponent<Joystick>();
+        //moveStick = GameObject.Find("Fixed Joystick");
+        //moveStickJoy = moveStick.GetComponent<Joystick>();
         runSound = GetComponent<AudioSource>();
     }
 
+    private bool hasSetJoy = false;
+    private void setJoy(){
+        moveStick = GameObject.Find("Fixed Joystick");
+        moveStickJoy = moveStick.GetComponent<Joystick>();
+        hasSetJoy = true;
+    }
     // Update is called once per frame
     void Update()
     {
-        
+        if(!hasSetJoy){
+            setJoy();
+        }
         // Do Somethings for anim
         if(!chaState.blockMoving && !chaState.blockAnim){
 

@@ -12,8 +12,9 @@ public class Level_0 : LevelEventManager
     public GameObject Stones;
 
     public GameObject TargetMonsterfactory;
-
     
+    public GameObject PowerGenetor;
+    public List<GameObject> Towers;
     private PlayerController playerController;
     protected override void LevelStart(){
         playerController = playerManager.GetComponent<PlayerController>();
@@ -148,6 +149,7 @@ public class Level_0 : LevelEventManager
             delegate {
                     
                     // Block Input
+                    // Instantiate()
                     Invoke("BlockPlayerInput", 0.125f);
                     BlockPlayerBar(0);
                     BlockPlayerBar(1);
@@ -176,7 +178,7 @@ public class Level_0 : LevelEventManager
                 },
             "When player enter the telegraph(wayPoints#5), Raise dialogues, Then Block PlayerInput, CG#2 First Part beginning.");
         
-        // Trigger#9, CG#2 part#2. On theifFox enter the door, fading screen to black.  Block PlayerInput, then Raise dialogues, CG#2 beginning.
+        // Trigger#9, CG#2 part#2. On theifFox enter the door, fading screen to black, then move Theif into the Bar.
         RegisterEventTrigger(
             delegate {
                     return playerEnteredWayPoint(wayPoints[7]);
@@ -185,8 +187,9 @@ public class Level_0 : LevelEventManager
                     Invoke("SwitchFromBasementToBar", 1.0f);
                     // I just use Time control everything here....
                 },
-            "When player enter the telegraph(wayPoints#5), Raise dialogues, Then Block PlayerInput, CG#2 First Part beginning.");
-        // Trigger#10, CG#2 part#3. On theifFox near the SowrdFox.
+            "When theifFox enter the door, fading screen to black, then move Theif into the Bar.");
+
+        // Trigger#10, CG#2 part#3. On theifFox near the SowrdFox, throw the dialogues, after dialogues, fading screen and move both fox outside the bar(waypoint 10,11). Finish the CG#2
         RegisterEventTrigger(
             delegate {
                     return playerEnteredWayPoint(wayPoints[9]);
@@ -202,17 +205,53 @@ public class Level_0 : LevelEventManager
                     StartCoroutine(UnblockPlayerBarAfter(0,7.5f));
                     StartCoroutine(UnblockPlayerBarAfter(1,7.5f));
                 },
-            "When player enter the telegraph(wayPoints#5), Raise dialogues, Then Block PlayerInput, CG#2 First Part beginning.");
+            "When theifFox near the SowrdFox, throw the dialogues, after dialogues, fading screen and move both fox outside the bar(waypoint 10,11)");
+            
+        // Trigger#11, On foxes go near by the tower, hint player should destory the powergen first. 
+        RegisterEventTrigger(
+            delegate {
+                    return playerEnteredWayPoint(wayPoints[12]);
+                }, 
+            delegate {
+                    if(PowerGenetor != null){
+                        dialogues_12();
+                    }else{
+                        dialogues_13();
+                    }
+                },
+            "When foxes go near by the tower, hint player should destory the powergen first.");
 
+        // Trigger#12, On power Genetor was destoried, raise dialogues.
+        RegisterEventTrigger(
+            delegate {
+                    return PowerGenetor==null;
+                }, 
+            delegate {
+                    foreach(GameObject df in Towers){
+                        df.GetComponent<EnemyDefendTowerMovement>().PowerOff();
+                    }
+                    dialogues_14();
+                },
+            "When power Genetor was destoried, raise dialogues. ");
 
+        // Trigger#13, On foxes go near by the BOSS, Raise dialogues_15.
+        RegisterEventTrigger(
+            delegate {
+                    return playerEnteredWayPoint(wayPoints[13]);
+                }, 
+            delegate {
+                        dialogues_15();
+                },
+            "When foxes go near by the BOSS, Raise dialogues_15.");
 
-        // Trigger#X, Make Player win the level.
+        // Trigger#14, Make Player win the level.
         RegisterEventTrigger(
             delegate {
                     return EnemiesTeams[8] == null;
                 }, 
             delegate {
-                    WinManager.GetComponent<WinLevel>().winSignal = true;
+                    dialogues_16();
+                    Invoke("ToWin",1.0f);
                 },
             "When player enter wayPoint#6, Raise dialogues between shooter and magicianFox");
 
@@ -254,7 +293,10 @@ public class Level_0 : LevelEventManager
         EnemiesTeams[6].SetActive(true);
         EnemiesTeams[7].SetActive(true);
         EnemiesTeams[8].SetActive(true);
+    }
 
+    private void ToWin(){
+        WinManager.GetComponent<WinLevel>().winSignal = true;
     }
 
     // Dialogues. Unbeautiful method, but I did not find good idea for that. 
@@ -297,40 +339,68 @@ public class Level_0 : LevelEventManager
 
     private void dialogues_7(){
         PushDialogue("Shelly","Look What I found! A Telegraphy!!");
-        PushDialogue("Shelly", "I think I can send some note to my friend THEIF_FOX, and it will alert all foxes. ");
-        PushDialogue("Shelly", "Let me see see THEIF_FOX's number.....That it, start sending text.....");
+        PushDialogue("Shelly", "I think I can send some note to my friend Chem, and it will alert all foxes. ");
+        PushDialogue("Shelly", "Let me see see Chem's number.....That it, start sending text.....");
         RaiseDialogue();
     }
     private void dialogues_8(){
-        PushDialogue("Shelly", "Let me see see THEIF_FOX's number.....That it, start sending text.....");
+        PushDialogue("Shelly", "Let me see see Chem's number.....That it, start sending text.....");
         RaiseDialogue();
     }
     private void dialogues_9(){
-        PushDialogue("THEIF_FOX", "Whoes message...Shelly?");
+        PushDialogue("Chem", "Whoes message...Shelly?");
         PushDialogue("Shelly's message", "This is Shelly.  Androids' Invasion Detected, raise RED ALERT!");
-        PushDialogue("THEIF_FOX", "Androids' Invasion? That's funny.....they living far away from us....");
-        PushDialogue("THEIF_FOX", "But Shelly is a serious Fox......"+"Better to find SWORD_FOX and discuss about it first.");
+        PushDialogue("Chem", "Androids' Invasion? That's funny.....they living far away from us....");
+        PushDialogue("Chem", "But Shelly is a serious Fox......"+"Better to find Hex and discuss about it first.");
         RaiseDialogue();
     }
     private void dialogues_10(){
-        PushDialogue("THEIF_FOX", "Hello SWORD_FOX, I got a bad news.");
-        PushDialogue("THEIF_FOX", "Shelly told me that Androids are invading our village.");
-        PushDialogue("SWORD_FOX", "RE-----ALLY? Maybe you need some Fox wine to wake up");
-        PushDialogue("THEIF_FOX", "........");
-        PushDialogue("SWORD_FOX", "........");
+        PushDialogue("Chem", "Hello Hex, I got a bad news.");
+        PushDialogue("Chem", "Shelly told me that Androids are invading our village.");
+        PushDialogue("Hex", "RE-----ALLY? Maybe you need some Fox wine to wake up");
+        PushDialogue("Chem", "........");
+        PushDialogue("Hex", "........");
         PushDialogue("Background Noise", "BOOM!!!!!!");
-        PushDialogue("THEIF_FOX", "What happen outside?");
-        PushDialogue("SWORD_FOX", "Let's check it!");
+        PushDialogue("Chem", "What happen outside?");
+        PushDialogue("Hex", "Let's check it!");
         RaiseDialogue();
     }
     private void dialogues_11(){
-        PushDialogue("THEIF_FOX", "Seems that Shelly was right. Androids is now attacking our village. ");
-        PushDialogue("SWORD_FOX", "CRASH THOSE SCRAPS!!!!");
-        PushDialogue("THEIF_FOX", "........");
-        PushDialogue("THEIF_FOX", "You drunk too much.....");
-        PushDialogue("THEIF_FOX", "Those Androids are too much to resist. We should runaway to the forest. ");
-        PushDialogue("THEIF_FOX", "Let's go, SWORD_FOX. We should Survive first.");
+        PushDialogue("Chem", "Seems that Shelly was right. Androids is now attacking our village. ");
+        PushDialogue("Hex", "CRASH THOSE SCRAPS!!!!");
+        PushDialogue("Chem", "........");
+        PushDialogue("Chem", "You drunk too much.....");
+        PushDialogue("Chem", "Those Androids are too much to resist. We should runaway to the forest on The North. ");
+        PushDialogue("Chem", "Let's go, Hex. We should Survive first.");
+        RaiseDialogue();
+    }
+    private void dialogues_12(){
+        PushDialogue("Chem", "Burst Towers! Watch Out!");
+        PushDialogue("Hex", "Damn those Androids.....We need to find some way to make them Shutdown!");
+        PushDialogue("Chem", "I have a idea.....I saw a power genetor on the West, may be we can try to destory it first.");
         RaiseDialogue();
     }
 
+
+    private void dialogues_13(){
+        PushDialogue("Chem", "Burst Towers! Watch Out!");
+        PushDialogue("Hex", "Calm Down, Chem. Those towers seems unfunctional now.......We could just walk through them. ");        
+        RaiseDialogue();
+    }
+    private void dialogues_14(){
+        PushDialogue("Hex", "Ok, the Power Generator has been destoried. All Androids defense should be shutdown. ");        
+        RaiseDialogue();
+    }
+
+    private void dialogues_15(){
+        PushDialogue("BOSS", "You Shall Not Pass!");
+        PushDialogue("Hex", "A Androids boss! We should defeat it! ");        
+        PushDialogue("Chem", "Let's go. ");        
+        RaiseDialogue();
+    }
+    private void dialogues_16(){
+        PushDialogue("Hex", "The Boss was defeated. Let's go to the forest! ");
+        PushDialogue("Chem", "Nash and Shelly are wait for us in the forest. We should make plan to resist all anroids.");        
+        RaiseDialogue();
+    }
 }
